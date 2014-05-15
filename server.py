@@ -5,11 +5,7 @@ import tornado.web
 import os
 
 from centrality import Centrality
-from tornado.options import define, options
 
-define("port", default=5000,help="run on the given port", type=int)
-
-tornado.options.parse_command_line()
 
 class IndexHandler(tornado.web.RequestHandler):
 	def get(self):
@@ -30,6 +26,8 @@ application = tornado.web.Application(
 	static_path=static_path,
 	template_path=template_path)
 
+
 http_server = tornado.httpserver.HTTPServer(application)
+port = int(os.environ.get("PORT", 5000))
 http_server.listen(options.port)
 tornado.ioloop.IOLoop.instance().start()
