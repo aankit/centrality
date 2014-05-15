@@ -2,12 +2,13 @@
 #lemmas - names, antonyms, derivationally_related_forms, pertainyms (adj) 
 
 import random, nltk
+nltk.data.path.append('./nltk_data/')
 from nltk.corpus import wordnet as wn
 
 class Syns(object):
 
 	def __init__(self, word, pos):
-		nltk.data.path.append('./nltk_data/')
+		
 		self.word = word
 		self.pos = pos
 		self.number = 0
