@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Centrality</title>
+	</head>
+	<body>
+		<h1>Poetry that invites to take a more intuitive approach to meaning.</h1>
+		<!--img src="{{ static_url("bird.jpg") }}"-->
+		<p>
+			<input type="text" name="word" id="word">
+			<input type="button" id="clicker" value="click for your poem!">
+		</p>
+		<p id="results"></div>
+		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+		<script>
+			$(document).ready(function() {
+				$('#clicker').click(function() {
+					$('#results').html('loading...');
+					var word = $('#word').val();
+					$.get('/poem', {"word": word}, function(data) {
+						$('#results').html(data);
+					});
+				});
+			});
+		</script>
+	</body>
+</html>
