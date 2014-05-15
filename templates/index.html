@@ -10,22 +10,34 @@
 			Enter a verb below and receive a poem that explores its meanings.  You might walk away feeling differently about what that verb means.
 		</p>
 
-		<p>
+		<form id="form">
 			Type a verb, any verb!<input type="text" name="word" id="word">
-			<input type="button" id="clicker" value="click for your poem!">
-		</p>
+			<input type="submit" form="form"  id="clicker" value="click for your poem!">
+		</form>
+
 		<p id="results"></div>
 		<script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
 		<script>
 			$(document).ready(function() {
-				$('#clicker').click(function() {
-					$('#results').html('loading...');
+				$('clicker').prop('disabled', false)
+				$('form').submit(function(e) {
+ 					e.preventDefault();
+ 					$('clicker').prop('disabled', true)
+ 					//the rest of it
+ 					$('#results').html('loading...');
 					var word = $('#word').val();
-					$.get('/poem', {"word": word}, function(data) {
-						$('#results').html(data);
-						// $('#title').html(word);
-					});
+					if (word){
+						$.get('/poem', {"word": word}, function(data) {
+							$('#results').html(data);
+							// $('#title').html(word);
+						});	
+					} else {
+ 						$('#results').html('please type in a verb, you negligent monster');
+					}
 				});
+				// $('#clicker').click(function() {
+					
+				// });
 			});
 		</script>
 	</body>
@@ -33,6 +45,8 @@
 		<br>
 		<p>
 			<a href="http://www.aantiks.com/tag/centrality/">Learn more about the program.</a>
+			<br>
+			<a href="http://github.com/aankit/centrality">Get the code on Github.</a>
 			<br>
 			By Aankit Patel<br>
   			<a href="http://aankit.com">aankit.com</a>
