@@ -62,7 +62,7 @@ class Centrality(object):
 				# add words to the running list for the line
 				line.append(word)
 				# perform check on line length
-				words += " " + word
+				words += word
 				countWords = words.split(" ")
 				for word in countWords:
 					totalWords += 1
@@ -133,6 +133,6 @@ class Centrality(object):
 
 if __name__ == '__main__':
 	centrality = Centrality(sys.argv[1])
-	centrality.writePoem()
+	print centrality.writePoem()
 
 
