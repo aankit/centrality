@@ -16,7 +16,7 @@ class CentralityHandler(tornado.web.RequestHandler):
 		response = self.get_argument("word")
 		c = Centrality(response)
 		for line in c.writePoem():
-			print line
+			# print line
 			self.write(line)
 
 static_path = os.path.join(os.path.dirname(__file__), "static")

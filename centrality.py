@@ -74,11 +74,11 @@ class Centrality(object):
 			toPrint = toPrint.strip()
 			if lineCount%5 == 0 and lineCount != 0:
 				lineCount += 1
-				outputStr += '\n'
-				outputStr += toPrint + '\n'
+				outputStr += "<br>"
+				outputStr += toPrint + "<br>"
 			else:
 				lineCount += 1
-				outputStr += toPrint + '\n'
+				outputStr += toPrint + "<br>"
 		return outputStr	
 
 
