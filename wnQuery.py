@@ -1,13 +1,13 @@
 #wordnet functions - what data do I want to extract?
 #lemmas - names, antonyms, derivationally_related_forms, pertainyms (adj) 
 
-
+import random, nltk
 from nltk.corpus import wordnet as wn
-import random
 
 class Syns(object):
 
 	def __init__(self, word, pos):
+		nltk.data.path.append('./nltk_data/')
 		self.word = word
 		self.pos = pos
 		self.number = 0
