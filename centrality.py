@@ -27,8 +27,12 @@ class Centrality(object):
 			bc = BellCurve.BellCurve(v, svar)
 			self.curves[k] = bc
 			sourceOntology.extend(self.s.ontoList(k))
-
-		self.numLines = int(count*2)	#poem length
+		temp = int(count*2)
+		if temp > 10:
+			self.numLines = 10
+		else:
+			self.numLines = temp
+		# self.numLines = int(count*2)	#poem length
 		self.minWords = 10		#line length
 
 
