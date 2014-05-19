@@ -1,4 +1,4 @@
-from wnQuery import Syns
+from wnQuery_dev import Syns, Pos
 import BellCurve
 import nonsensenator
 import sys, numpy, random, operator
@@ -7,7 +7,8 @@ class Centrality(object):
 
 	def __init__(self, word):
 		self.word = word
-		self.pos = "v"
+		p = Pos(self.word)
+		self.pos = p.pos
 		self.s = Syns(self.word, self.pos)
 		self.n = nonsensenator.Nonsensenator()
 		self.curves = dict()
@@ -16,7 +17,7 @@ class Centrality(object):
 		#these are the keys
 		self.varScalar = 1.20	#shape of the curve
 		self.nonsense = .50		#amount and spread of nonsense in standard deviations
-		self.numLines = 10		#poem length
+		self.numLines = 15		#poem length
 		self.minWords = 10		#line length
 		#generate variance of each synset's distribution, create the curve, 
 		#and pull the full ontology for nonsensenator
