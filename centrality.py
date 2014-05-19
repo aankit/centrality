@@ -17,15 +17,19 @@ class Centrality(object):
 		#these are the keys
 		self.varScalar = 1.20	#shape of the curve
 		self.nonsense = .50		#amount and spread of nonsense in standard deviations
-		self.numLines = 10		#poem length
-		self.minWords = 10		#line length
+
 		#generate variance of each synset's distribution, create the curve, 
 		#and pull the full ontology for nonsensenator
+		count = 0
 		for k,v in self.s.structure.items():
+			count += 1
 			svar = self.varScalar*v
 			bc = BellCurve.BellCurve(v, svar)
 			self.curves[k] = bc
 			sourceOntology.extend(self.s.ontoList(k))
+
+		self.numLines = int(count*2)	#poem length
+		self.minWords = 10		#line length
 
 
 		#clean up the sourceOntology to be a list of individual words, that's all
