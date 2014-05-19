@@ -7,8 +7,7 @@ from nltk.corpus import wordnet as wn
 
 class Syns(object):
 
-	def __init__(self, word, pos):
-		
+	def __init__(self, word, pos):		
 		self.word = word
 		self.pos = pos
 		self.number = 0
@@ -116,14 +115,27 @@ class Syns(object):
 		except:
 			return [t.name.replace("_", " ") for t in thingList]
 
+class Pos(object):
+
+	def __init__(self, word):
+		self.word = word
+
+	def verbExists(self):
+		synlist = wn.synsets(self.word)
+		returnVar = False
+		for sl in synlist:
+			if sl.pos == 'v':
+				 returnVar = True
+		return returnVar
+
 
 #decode('ascii', errors='replace') this might be necessary
 
 if __name__ == "__main__":
 	import sys
-	syn = Syns(sys.argv[1], sys.argv[2])
-	theList = list()
-	syn.getSynsets('love')
+	pos = Pos(sys.argv[1])
+	# theList = list()
+	print pos.verbExists()
 		
 
 

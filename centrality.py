@@ -1,4 +1,4 @@
-from wnQuery import Syns
+from wnQuery import Syns, Pos
 import BellCurve
 import nonsensenator
 import sys, numpy, random, operator
@@ -8,6 +8,7 @@ class Centrality(object):
 	def __init__(self, word):
 		self.word = word
 		self.pos = "v"
+		self.verbExists = Pos(word)
 		self.s = Syns(self.word, self.pos)
 		self.n = nonsensenator.Nonsensenator()
 		self.curves = dict()
@@ -45,41 +46,44 @@ class Centrality(object):
 							self.cleanOntology.append(w)
 
 	def writePoem(self):
-		outputStr = ""
-		#main loop, can adjust the linspace min and max to calibrate the poem
-		xAxis = numpy.linspace(-.5,1.25, num=self.numLines)
-		lineCount = 0;
-		for x in numpy.nditer(xAxis):
-			
-			line=list()
-			totalWords = 0
-			diff = self.minWords
-			words = ''
-			while diff>0:
-				# get the synset & the word
-				synset = self.pickSynset(x)
-				word = self.getWords(x, synset)
-				# add words to the running list for the line
-				line.append(word)
-				# perform check on line length
-				words += word
-				countWords = words.split(" ")
-				for word in countWords:
-					totalWords += 1
-				diff = self.minWords - totalWords
-			if line:
-				toPrint = " ".join(line)
-			else:
-				toPrint = line[0]
-			toPrint = toPrint.strip()
-			if lineCount%5 == 0 and lineCount != 0:
-				lineCount += 1
-				outputStr += "<br>"
-				outputStr += toPrint + "<br>"
-			else:
-				lineCount += 1
-				outputStr += toPrint + "<br>"
-		return outputStr	
+		if self.verbExists.verbExists():
+			outputStr = ""
+			#main loop, can adjust the linspace min and max to calibrate the poem
+			xAxis = numpy.linspace(-.5,1.25, num=self.numLines)
+			lineCount = 0;
+			for x in numpy.nditer(xAxis):
+				
+				line=list()
+				totalWords = 0
+				diff = self.minWords
+				words = ''
+				while diff>0:
+					# get the synset & the word
+					synset = self.pickSynset(x)
+					word = self.getWords(x, synset)
+					# add words to the running list for the line
+					line.append(word)
+					# perform check on line length
+					words += word
+					countWords = words.split(" ")
+					for word in countWords:
+						totalWords += 1
+					diff = self.minWords - totalWords
+				if line:
+					toPrint = " ".join(line)
+				else:
+					toPrint = line[0]
+				toPrint = toPrint.strip()
+				if lineCount%5 == 0 and lineCount != 0:
+					lineCount += 1
+					outputStr += "<br>"
+					outputStr += toPrint + "<br>"
+				else:
+					lineCount += 1
+					outputStr += toPrint + "<br>"
+			return outputStr	
+		else:
+			return "No poem for you because you didn't follow my one request, I'm just a dumb computer."
 
 
 	def select_weighted_uni(self, d, min, max):
