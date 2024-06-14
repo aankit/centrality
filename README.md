@@ -1,8 +1,9 @@
 centrality
 ==========
 
-Generate poetry using Python and Wordnet. Find a more intuitive way to approach meaning. Built for Allison Parrish's class Reading and Writing Electronic Text at NYU-ITP.
+Built an application that generated poetry using lexicographic data and probability distributions. It took a verb as an input and generated a poem made up of its various meanings in an attempt to challenge you to find meaning on the edges, to appreciate the less common usages, and perhaps be inspired. 
 
-Use the application [here](http://centrality.herokuapp.com)! Try reading the poems out loud and with others, its fun!
+When I asked renowned Academy Award winninng computer scientist Ken Perlin for a verb to generate him a poem, he gave me one I mispelled and couldn't generate a poem about. After hearing the output of a less obscure verb, he said it sounded like a spam email and walked away.
 
-Documentation on the project on my blog [here](http://www.aantiks.com/2014/05/take-a-more-intuitive-approach-to-meaning/).
+Built for Allison Parrish's class Reading and Writing Electronic Text at NYU-ITP.
+
